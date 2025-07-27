@@ -2,6 +2,9 @@ from nicegui import ui
 
 def navbar():
     ui.add_css('''
+               .q-tooltip {
+                    font-size: 15px; /* mărimea textului din tooltip */
+                }
                 .q-drawer__content::-webkit-scrollbar {
                     display: none;
                 }
