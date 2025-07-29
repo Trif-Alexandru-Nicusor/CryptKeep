@@ -1,5 +1,6 @@
 from nicegui import ui
 from components import navbar
+from functions import vc, globals
 
 @ui.page('/vault_cards')
 def vault_cards_page():
@@ -8,7 +9,7 @@ def vault_cards_page():
     
     with ui.card().style('width: 100%'):
         with ui.row().classes('gap-24'):
-            vc_hide_unhide_button = ui.button(icon = 'visibility')
+            vc_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vc_hide_unhide_button, vc_rows_hidden, vc_rows_unhidden, vc_table, vc_logs, 'vc'))
             vc_hide_unhide_button.tailwind.background_color('transparent')
             vc_hide_unhide_button.tooltip(text = 'Hide or unhide the card/s number and CVV.')
             
@@ -16,29 +17,36 @@ def vault_cards_page():
                 vc_type_select = ui.select(label = 'Type', options = ['Credit', 'Debit'])
                 vc_type_select.style('width: 225px; align-self: center').props('outlined')
                 
-                vc_name_on_card_input = ui.input(label = 'Name On Card')
-                vc_name_on_card_input.style('width: 225px; align-self: center').props('outlined')
+                vc_bank_input = ui.input(label = 'Bank')
+                vc_bank_input.style('width: 225px; align-self: center').props('outlined')
                 
-                vc_card_number_input = ui.input(label = 'Name on Card')
+                vc_cardholders_name = ui.input(label = 'Cardholder’s Name')
+                vc_cardholders_name.style('width: 225px; align-self: center').props('outlined')
+                
+                vc_card_number_input = ui.input(label = 'Cardholder’s Name')
                 vc_card_number_input.style('width: 225px; align-self: center').props('outlined')
+                
                 with ui.expansion(text='Expiration date', icon='calendar_month').style('border: 1px solid #ccc; border-radius: 8px; width: 225px'):
-                    vc_expiration_date_month_select = ui.select(label = 'Month', options = [str(i) for i in range(1, 13)])
+                    
+                    vc_expiration_date_month_select = ui.select(label = 'Month', options = [str(i) for i in range(1, 13)], with_input = True)
                     vc_expiration_date_month_select.style('width: 200px; align-self: center').props('outlined')
                 
-                    vc_expiration_date_day_select = ui.select(label = 'Year', options = [str(year) for year in range(datetime.now().year, datetime.now().year + 31)])
-                    vc_expiration_date_day_select.style('width: 200px; align-self: center').props('outlined')
+                    vc_expiration_date_year_select = ui.select(label = 'Year', options = [str(year) for year in range(datetime.now().year, datetime.now().year + 31)], with_input = True)
+                    vc_expiration_date_year_select.style('width: 200px; align-self: center').props('outlined')
                 
                 vc_cvv_input = ui.input(label = 'CVV')
                 vc_cvv_input.style('width: 225px; align-self: center').props('outlined')
                 
-                vc_save_card = ui.button(text = 'Save Card', icon = 'add_card')
+                vc_save_card = ui.button(text = 'Save Card', icon = 'add_card', on_click = lambda: vc.vc_add_new_card(vc_type_select, vc_bank_input, vc_cardholders_name, vc_card_number_input,
+                                                                                                                      vc_expiration_date_month_select, vc_expiration_date_year_select, vc_cvv_input,
+                                                                                                                      vc_table, vc_rows_hidden, vc_rows_unhidden, vc_logs))
                 vc_save_card.tailwind.background_color('white').text_transform('normal-case').align_self('center').text_color('black')
                              
             vc_add_card_s_button = ui.button(icon = 'add_card', on_click = dialog.open)
             vc_add_card_s_button.tailwind.background_color('transparent')
             vc_add_card_s_button.tooltip(text = 'Add a new card.')
             
-            vc_remove_card_s_button = ui.button(icon = 'credit_card_off')
+            vc_remove_card_s_button = ui.button(icon = 'credit_card_off', on_click = lambda: globals.global_remove_data_from_tables(vc_table, 'vc', vc_rows_hidden, vc_rows_unhidden, vc_logs))
             vc_remove_card_s_button.tailwind.background_color('transparent')
             vc_remove_card_s_button.tooltip(text = 'Remove the card/s selected')
             
@@ -55,18 +63,17 @@ def vault_cards_page():
             vc_logs_button.tooltip(text = 'See your last actions.')
             
         vc_columns = [
-            {'name': 'id', 'label': 'ID', 'field': 'id', 'align': 'center'},
-            {'name': 'type', 'label': 'Type', 'field': 'type', 'align': 'center'},
-            {'name': 'name_on_card', 'label': 'Name on Card', 'field': 'cardholders_name', 'align': 'center'},
-            {'name': 'card_number', 'label': 'Card Number', 'field': 'card_number', 'align': 'center'},
-            {'name': 'expiration_date', 'label': 'Expiration Date', 'field': 'expiration_date', 'align': 'center'},
-            {'name': 'cvv', 'label': 'CVV', 'field': 'cvv', 'align': 'center'},
+            {'headerName': 'ID', 'field': 'id', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True, 'headerCheckboxSelection': True, 'checkboxSelection': True},
+            {'headerName': 'Type', 'field': 'type', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
+            {'headerName': 'Bank', 'field': 'bank', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
+            {'headerName': 'Cardholder’s Name', 'field': 'cardholders_name', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
+            {'headerName': 'Card Number', 'field': 'card_number', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
+            {'headerName': 'CVV', 'field': 'cvv', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
+            {'headerName': 'Expiration Date', 'field': 'expiration_date', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
         ]
+        
         vc_rows_hidden = []
         vc_rows_unhidden = []
-        vc_table = ui.table(
-            columns = vc_columns,
-            rows = vc_rows_hidden,
-            selection = 'multiple',
-            pagination = 7
-        ).style('width: 100%')
+        
+        vc_table = ui.aggrid(options = {'columnDefs': vc_columns, 'rowData': vc_rows_hidden, 
+                                         'rowSelection': 'multiple', 'pagination': True,}, theme = "alpine-dark")

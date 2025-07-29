@@ -38,7 +38,7 @@ tables_sql = [
     CREATE TABLE IF NOT EXISTS vault_personal_data (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         full_name TEXT,
-        identity_number TEXT,
+        pin TEXT,
         document_number TEXT,
         date_of_issue TEXT,
         expiration_date TEXT,

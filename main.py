@@ -7,4 +7,4 @@ from pages.vault_personal_data import *
 from nicegui import ui
 
 main_page()
-ui.run(dark= True, title = 'CryptKeep')
+ui.run(dark= True, title = 'CryptKeep', native =  True, window_size = [1050, 700])

@@ -47,4 +47,4 @@ def navbar():
                 ui.label(text = 'Cards').style('font-size: 20px; position: relative; right: -25px')
             with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/vault_personal_data')).style('width: 100%'):
                 ui.icon(name = 'person', size = '25px')
-                ui.label(text = 'Personal Data').style('font-size: 20px; position: relative; right: -25px')
+                ui.label(text = 'PersonaI Data').style('font-size: 20px; position: relative; right: -25px')

@@ -1,5 +1,6 @@
 from nicegui import ui
 from components import navbar
+from functions import vk, globals
 
 @ui.page('/vault_keys')
 def vault_keys_page():
@@ -7,25 +8,25 @@ def vault_keys_page():
     with ui.card().style('width: 100%'):
         with ui.row().classes('gap-24'):
             
-            vk_hide_unhide_button = ui.button(icon = 'visibility')
+            vk_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vk_hide_unhide_button, vk_rows_hidden, vk_rows_unhidden, vk_table, vk_logs, 'vk'))
             vk_hide_unhide_button.tailwind.background_color('transparent')
             vk_hide_unhide_button.tooltip(text = 'Hide or unhide the key/s selected.')
             
             with ui.dialog() as dialog, ui.card():
-                vk_name = ui.input(label = 'Name')
-                vk_name.style('width: 150px;').props('outlined')
+                vk_name_input = ui.input(label = 'Name')
+                vk_name_input.style('width: 150px;').props('outlined')
                 
                 vk_key_input = ui.input(label = 'Key')
                 vk_key_input.style('width: 150px;').props('outlined')
                 
-                vk_add_key_button = ui.button(text = 'Add Key', icon = 'add')
+                vk_add_key_button = ui.button(text = 'Add Key', icon = 'add', on_click = lambda: vk.vk_add_new_key(vk_name_input, vk_key_input, vk_table, vk_rows_hidden, vk_rows_unhidden, vk_logs))
                 vk_add_key_button.tailwind.background_color('white').text_transform('normal-case').align_self('center').text_color('black')
                 
             vk_add_key_s_button = ui.button(icon = 'add', on_click = dialog.open)
             vk_add_key_s_button.tailwind.background_color('transparent')
             vk_add_key_s_button.tooltip(text = 'Add a key.')
             
-            vk_remove_key_s_button = ui.button(icon = 'remove')
+            vk_remove_key_s_button = ui.button(icon = 'remove', on_click = lambda: globals.global_remove_data_from_tables(vk_table, 'vk', vk_rows_hidden, vk_rows_unhidden, vk_logs))
             vk_remove_key_s_button.tailwind.background_color('transparent')
             vk_remove_key_s_button.tooltip(text = 'Remove the key/s selected.')
             
@@ -41,10 +42,6 @@ def vault_keys_page():
             vk_logs_button.tailwind.background_color('transparent')
             vk_logs_button.tooltip(text = 'See your last actions.')
             
-        with ui.expansion(text = 'Filters', icon = 'filter_list').style('border: 1px solid #ccc; border-radius: 8px;'):
-            with ui.row().classes('gap-20'):
-                vk_name_filter_input= ui.input(label = 'Name').style('width: 150px;').props('outlined')
-                vk_key_filter_input = ui.input(label = 'Key').style('width: 150px;').props('outlined')
                 
         vk_columns = [
             {'name': 'id', 'label': 'ID', 'field': 'id', 'align': 'center'},
@@ -53,9 +50,16 @@ def vault_keys_page():
         ]
         vk_rows_hidden = []
         vk_rows_unhidden =[]
-        table_keys = ui.table(
-            columns = vk_columns,
-            rows = vk_rows_hidden,
-            selection = 'multiple',
-            pagination = 7
-        ).style('width: 100%')
+
+        
+        vk_columns = [
+            {'headerName': 'ID', 'field': 'id', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True, 'headerCheckboxSelection': True, 'checkboxSelection': True},
+            {'headerName': 'Name', 'field': 'name', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
+            {'headerName': 'Key', 'field': 'key', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
+        ]
+        
+        vk_rows_hidden = []
+        vk_rows_unhidden = []
+        
+        vk_table = ui.aggrid(options = {'columnDefs': vk_columns, 'rowData': vk_rows_hidden, 
+                                         'rowSelection': 'multiple', 'pagination': True,}, theme = "alpine-dark")
