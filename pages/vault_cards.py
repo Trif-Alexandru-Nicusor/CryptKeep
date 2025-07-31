@@ -8,12 +8,12 @@ def vault_cards_page():
     navbar.navbar()
     
     with ui.card().style('width: 100%'):
-        with ui.row().classes('gap-24'):
+        with ui.row().style('column-gap: 112px'):
             vc_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vc_hide_unhide_button, vc_rows_hidden, vc_rows_unhidden, vc_table, vc_logs, 'vc'))
             vc_hide_unhide_button.tailwind.background_color('transparent')
             vc_hide_unhide_button.tooltip(text = 'Hide or unhide the card/s number and CVV.')
             
-            with ui.dialog() as dialog, ui.card():
+            with ui.dialog() as dialog, ui.card().classes('scrollbar-custom'):
                 vc_type_select = ui.select(label = 'Type', options = ['Credit', 'Debit'])
                 vc_type_select.style('width: 225px; align-self: center').props('outlined')
                 
@@ -26,14 +26,14 @@ def vault_cards_page():
                 vc_card_number_input = ui.input(label = 'Cardholder’s Name')
                 vc_card_number_input.style('width: 225px; align-self: center').props('outlined')
                 
-                with ui.expansion(text='Expiration date', icon='calendar_month').style('border: 1px solid #ccc; border-radius: 8px; width: 225px'):
+                with ui.expansion(text='Expiration date', icon='calendar_month').style('border: 1px solid #ccc; border-radius: 8px; width: 225px;'):
                     
                     vc_expiration_date_month_select = ui.select(label = 'Month', options = [str(i) for i in range(1, 13)], with_input = True)
-                    vc_expiration_date_month_select.style('width: 200px; align-self: center').props('outlined')
+                    vc_expiration_date_month_select.style('width: 190px; align-self: center').props('outlined')
                 
                     vc_expiration_date_year_select = ui.select(label = 'Year', options = [str(year) for year in range(datetime.now().year, datetime.now().year + 31)], with_input = True)
-                    vc_expiration_date_year_select.style('width: 200px; align-self: center').props('outlined')
-                
+                    vc_expiration_date_year_select.style('width: 190px; align-self: center').props('outlined')
+
                 vc_cvv_input = ui.input(label = 'CVV')
                 vc_cvv_input.style('width: 225px; align-self: center').props('outlined')
                 
