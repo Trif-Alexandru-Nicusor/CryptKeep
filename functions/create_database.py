@@ -21,10 +21,11 @@ tables_sql = [
     CREATE TABLE IF NOT EXISTS vault_cards (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         type TEXT,
-        name_on_card TEXT,
+        bank TEXT,
+        cardholders_name TEXT,
         card_number TEXT,
-        expiration_date TEXT,
         cvv TEXT
+        expiration_date TEXT,
     );
     """,
     """
