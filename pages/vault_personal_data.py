@@ -7,7 +7,7 @@ def vault_personal_data():
     navbar.navbar()
     with ui.card().style('width: 100%'):
         
-        with ui.row().style('column-gap: 108px'):
+        with ui.row().style('column-gap: 103px'):
             vpd_hide_unhide_pin_dn_button = ui.button(icon = 'visibility', on_click = lambda: vpd.vk_hide_unhide_cn_vcc(vpd_hide_unhide_pin_dn_button, vpd_rows_hidden, vpd_rows_unhidden, vpd_table, vpd_logs))
             vpd_hide_unhide_pin_dn_button.tailwind.background_color('transparent')
             vpd_hide_unhide_pin_dn_button.tooltip(text = 'Hide or unhide Identity Number and Document Number of selected data/s.')

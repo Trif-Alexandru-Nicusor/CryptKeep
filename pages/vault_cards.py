@@ -8,7 +8,7 @@ def vault_cards_page():
     navbar.navbar()
     
     with ui.card().style('width: 100%'):
-        with ui.row().style('column-gap: 112px'):
+        with ui.row().style('column-gap: 107px'):
             vc_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vc_hide_unhide_button, vc_rows_hidden, vc_rows_unhidden, vc_table, vc_logs, 'vc'))
             vc_hide_unhide_button.tailwind.background_color('transparent')
             vc_hide_unhide_button.tooltip(text = 'Hide or unhide the card/s number and CVV.')
