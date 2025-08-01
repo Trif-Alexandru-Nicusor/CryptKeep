@@ -7,13 +7,13 @@ def vault_cards_page():
     from datetime import datetime
     navbar.navbar()
     
-    with ui.card().style('width: 100%'):
+    with ui.card().style('width: 100%').style('font-family: Times New Roman'):
         with ui.row().style('column-gap: 107px'):
             vc_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vc_hide_unhide_button, vc_rows_hidden, vc_rows_unhidden, vc_table, vc_logs, 'vc'))
             vc_hide_unhide_button.tailwind.background_color('transparent')
             vc_hide_unhide_button.tooltip(text = 'Hide or unhide the card/s number and CVV.')
             
-            with ui.dialog() as dialog, ui.card().classes('scrollbar-custom'):
+            with ui.dialog() as dialog, ui.card().classes('scrollbar-custom').style('font-family: Times New Roman'):
                 vc_type_select = ui.select(label = 'Type', options = ['Credit', 'Debit'])
                 vc_type_select.style('width: 225px; align-self: center').props('outlined')
                 
@@ -54,7 +54,7 @@ def vault_cards_page():
             vc_download_card__s_info.tailwind.background_color('transparent')
             vc_download_card__s_info.tooltip(text = 'Download card/s selected.')
                         
-            with ui.dialog() as dialog1, ui.card():
+            with ui.dialog() as dialog1, ui.card().style('font-family: Times New Roman'):
                 vc_logs = ui.log()
                 vc_logs.style('width: 500px')
                 
@@ -77,3 +77,4 @@ def vault_cards_page():
         
         vc_table = ui.aggrid(options = {'columnDefs': vc_columns, 'rowData': vc_rows_hidden, 
                                          'rowSelection': 'multiple', 'pagination': True,}, theme = "alpine-dark")
+        vc_table.style('font-family: Times New Roman')

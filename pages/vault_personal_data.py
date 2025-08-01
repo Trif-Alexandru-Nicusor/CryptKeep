@@ -5,14 +5,14 @@ from functions import vpd, globals
 @ui.page('/vault_personal_data')
 def vault_personal_data():
     navbar.navbar()
-    with ui.card().style('width: 100%'):
+    with ui.card().style('width: 100%').style('font-family: Times New Roman'):
         
         with ui.row().style('column-gap: 103px'):
             vpd_hide_unhide_pin_dn_button = ui.button(icon = 'visibility', on_click = lambda: vpd.vk_hide_unhide_cn_vcc(vpd_hide_unhide_pin_dn_button, vpd_rows_hidden, vpd_rows_unhidden, vpd_table, vpd_logs))
             vpd_hide_unhide_pin_dn_button.tailwind.background_color('transparent')
             vpd_hide_unhide_pin_dn_button.tooltip(text = 'Hide or unhide Identity Number and Document Number of selected data/s.')
             
-            with ui.dialog() as vpd_dialog, ui.card().classes('scrollbar-custom'):
+            with ui.dialog() as vpd_dialog, ui.card().classes('scrollbar-custom').style('font-family: Times New Roman'):
                 vpd_full_name_input = ui.input(label = 'Full Name')
                 vpd_full_name_input.style('width: 200px;').props('outlined')
                 
@@ -105,5 +105,5 @@ def vault_personal_data():
         vpd_rows_unhidden = []
         
         vpd_table = ui.aggrid(options = {'columnDefs': vpd_columns, 'rowData': vpd_rows_hidden, 'rowSelection': 'multiple', 'pagination': True,}, theme = "alpine-dark")
-        vpd_table.style('height: 545px')
+        vpd_table.style('height: 490px; font-family: Times New Roman')
         

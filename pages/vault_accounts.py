@@ -4,14 +4,14 @@ from functions import va, globals
 @ui.page('/vault_accounts')
 def vault_accounts_page():
     navbar.navbar()
-    with ui.card().style('width: 100%'):
+    with ui.card().style('width: 100%').style('font-family: Times New Roman'):
         with ui.row().style('column-gap: 107px'):
             
             va_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(va_hide_unhide_button, va_rows_hidden, va_rows_unhidden, va_table, va_logs, 'va'))
             va_hide_unhide_button.tailwind.background_color('transparent')
             va_hide_unhide_button.tooltip(text = 'Hide or unhide the account/s selected.')
             
-            with ui.dialog() as va_dialog, ui.card():
+            with ui.dialog() as va_dialog, ui.card().style('font-family: Times New Roman'):
                 va_type_account_select = ui.select(label = 'Type', options = ['Site', 'App'], clearable = True)
                 va_type_account_select.style('width: 170px;').props('outlined')
                 
@@ -40,7 +40,7 @@ def vault_accounts_page():
             va_logs_button.tailwind.background_color('transparent')
             va_logs_button.tooltip(text = 'Download the account/s selected.')
             
-            with ui.dialog() as va_dialog1, ui.card():
+            with ui.dialog() as va_dialog1, ui.card().style('font-family: Times New Roman'):
                 va_logs = ui.log()
                 va_logs.style('width: 500px')
             
@@ -61,5 +61,4 @@ def vault_accounts_page():
         
         va_table = ui.aggrid(options = {'columnDefs': va_columns, 'rowData': va_rows_hidden, 
                                          'rowSelection': 'multiple', 'pagination': True,}, theme = "alpine-dark")
-        
-        
+        va_table.style('font-family: Times New Roman')

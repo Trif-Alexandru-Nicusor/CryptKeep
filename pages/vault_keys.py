@@ -5,14 +5,14 @@ from functions import vk, globals
 @ui.page('/vault_keys')
 def vault_keys_page():
     navbar.navbar()
-    with ui.card().style('width: 100%'):
+    with ui.card().style('width: 100%').style('font-family: Times New Roman'):
         with ui.row().style('column-gap: 107px'):
             
             vk_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vk_hide_unhide_button, vk_rows_hidden, vk_rows_unhidden, vk_table, vk_logs, 'vk'))
             vk_hide_unhide_button.tailwind.background_color('transparent')
             vk_hide_unhide_button.tooltip(text = 'Hide or unhide the key/s selected.')
             
-            with ui.dialog() as dialog, ui.card():
+            with ui.dialog() as dialog, ui.card().style('font-family: Times New Roman'):
                 vk_name_input = ui.input(label = 'Name')
                 vk_name_input.style('width: 150px;').props('outlined')
                 
@@ -34,7 +34,7 @@ def vault_keys_page():
             vk_download_key_s_button.tailwind.background_color('transparent')
             vk_download_key_s_button.tooltip(text = 'Download the key/s selected.')
             
-            with ui.dialog() as dialog1, ui.card():
+            with ui.dialog() as dialog1, ui.card().style('font-family: Times New Roman'):
                 vk_logs = ui.log()
                 vk_logs.style('width: 500px')
                 
@@ -63,3 +63,4 @@ def vault_keys_page():
         
         vk_table = ui.aggrid(options = {'columnDefs': vk_columns, 'rowData': vk_rows_hidden, 
                                          'rowSelection': 'multiple', 'pagination': True,}, theme = "alpine-dark")
+        vk_table.style('font-family: Times New Roman')
