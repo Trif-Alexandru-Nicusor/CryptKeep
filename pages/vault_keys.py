@@ -43,11 +43,6 @@ def vault_keys_page():
             vk_logs_button.tooltip(text = 'See your last actions.')
             
                 
-        vk_columns = [
-            {'name': 'id', 'label': 'ID', 'field': 'id', 'align': 'center'},
-            {'name': 'name', 'label': 'Name', 'field': 'name', 'align': 'center'},
-            {'name': 'key', 'label': 'Key', 'field': 'key', 'align': 'center'},
-        ]
         vk_rows_hidden = []
         vk_rows_unhidden =[]
 
@@ -62,5 +57,5 @@ def vault_keys_page():
         vk_rows_unhidden = []
         
         vk_table = ui.aggrid(options = {'columnDefs': vk_columns, 'rowData': vk_rows_hidden, 
-                                         'rowSelection': 'multiple', 'pagination': True,}, theme = "alpine-dark")
+                                         'rowSelection': 'multiple', 'pagination': True, 'enableCellTextSelection': True, 'clipboard': True}, theme = "alpine-dark")
         vk_table.style('font-family: Times New Roman')

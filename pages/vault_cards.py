@@ -76,5 +76,5 @@ def vault_cards_page():
         vc_rows_unhidden = []
         
         vc_table = ui.aggrid(options = {'columnDefs': vc_columns, 'rowData': vc_rows_hidden, 
-                                         'rowSelection': 'multiple', 'pagination': True,}, theme = "alpine-dark")
+                                         'rowSelection': 'multiple', 'pagination': True, 'enableCellTextSelection': True, 'clipboard': True}, theme = "alpine-dark")
         vc_table.style('font-family: Times New Roman')

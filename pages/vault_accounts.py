@@ -60,5 +60,5 @@ def vault_accounts_page():
         va_rows_unhidden = []
         
         va_table = ui.aggrid(options = {'columnDefs': va_columns, 'rowData': va_rows_hidden, 
-                                         'rowSelection': 'multiple', 'pagination': True,}, theme = "alpine-dark")
+                                         'rowSelection': 'multiple', 'pagination': True, 'enableCellTextSelection': True, 'clipboard': True}, theme = "alpine-dark")
         va_table.style('font-family: Times New Roman')

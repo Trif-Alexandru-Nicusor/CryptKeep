@@ -104,6 +104,6 @@ def vault_personal_data():
         vpd_rows_hidden = []
         vpd_rows_unhidden = []
         
-        vpd_table = ui.aggrid(options = {'columnDefs': vpd_columns, 'rowData': vpd_rows_hidden, 'rowSelection': 'multiple', 'pagination': True,}, theme = "alpine-dark")
+        vpd_table = ui.aggrid(options = {'columnDefs': vpd_columns, 'rowData': vpd_rows_hidden, 'rowSelection': 'multiple', 'pagination': True, 'enableCellTextSelection': True, 'clipboard': True}, theme = "alpine-dark")
         vpd_table.style('height: 490px; font-family: Times New Roman')
         
