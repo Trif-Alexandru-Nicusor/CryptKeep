@@ -6,6 +6,7 @@ from functions import vk, globals
 def vault_keys_page():
     navbar.navbar()
     with ui.card().style('width: 100%').style('font-family: Times New Roman'):
+        ui.label('Vault Keys').style('font-size: 25px; align-self: center')
         with ui.row().style('column-gap: 107px'):
             
             vk_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vk_hide_unhide_button, vk_rows_hidden, vk_rows_unhidden, vk_table, vk_logs, 'vk'))

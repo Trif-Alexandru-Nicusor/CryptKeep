@@ -36,7 +36,12 @@ def login_page():
         password_input = ui.input(label = 'Password', password = True, password_toggle_button = True)
         password_input.props('outlined').style('width: 300px')
         
-        sign_up_button = ui.button(text = 'Sign Up')
-        sign_up_button.tailwind.background_color('white').text_color('black').text_transform('normal-case').align_self('center').font_size('lg')
+        with ui.row():
+            
+            local_cloud_storage_radio = ui.radio(options = ['Local', 'Cloud'])
+            local_cloud_storage_radio.props('inline color=white').style('font-size: 20px')
+            
+        log_in_button = ui.button(text = 'Log In')
+        log_in_button.tailwind.background_color('white').text_color('black').text_transform('normal-case').align_self('center').font_size('lg')
         
         ui.link(text = "Don't have an account? Sign Up", target = '/sign_up').tailwind.text_color('white').font_size('lg')

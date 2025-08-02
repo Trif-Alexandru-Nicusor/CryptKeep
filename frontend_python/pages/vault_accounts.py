@@ -5,6 +5,7 @@ from functions import va, globals
 def vault_accounts_page():
     navbar.navbar()
     with ui.card().style('width: 100%').style('font-family: Times New Roman'):
+        ui.label('Vault Accounts').style('font-size: 25px; align-self: center')
         with ui.row().style('column-gap: 107px'):
             
             va_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(va_hide_unhide_button, va_rows_hidden, va_rows_unhidden, va_table, va_logs, 'va'))

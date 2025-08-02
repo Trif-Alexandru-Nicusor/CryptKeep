@@ -6,7 +6,7 @@ from functions import vpd, globals
 def vault_personal_data():
     navbar.navbar()
     with ui.card().style('width: 100%').style('font-family: Times New Roman'):
-        
+        ui.label('Vault Personal Data').style('font-size: 25px; align-self: center')
         with ui.row().style('column-gap: 103px'):
             vpd_hide_unhide_pin_dn_button = ui.button(icon = 'visibility', on_click = lambda: vpd.vk_hide_unhide_cn_vcc(vpd_hide_unhide_pin_dn_button, vpd_rows_hidden, vpd_rows_unhidden, vpd_table, vpd_logs))
             vpd_hide_unhide_pin_dn_button.tailwind.background_color('transparent')

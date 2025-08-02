@@ -67,40 +67,47 @@ def navbar():
                 ui.label(text = 'PersonaI Data').style('font-size: 20px; position: relative; right: -10px')
                 
         with ui.expansion(text = 'Tools', icon = 'handyman').style('width: 100%; font-size: 25px'):
-            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/vault_accounts')).style('width: 100%'):
+            
+            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
                 ui.icon(name = 'password', size = '25px')
                 ui.label(text = 'Password Generator').style('font-size: 20px; position: relative; right: -10px')
                 
-            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/breach_checker')).style('width: 100%'):
+            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
                 ui.icon(name = 'security', size = '25px')
                 ui.label(text = 'Breach Checker').style('font-size: 20px; position: relative; right: -10px')
                 
-            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/audit_log')).style('width: 100%'):
+            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
                 ui.icon(name = 'history', size = '25px')
                 ui.label(text = 'Activity Log').style('font-size: 20px; position: relative; right: -10px')
                 
-            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/duplicate_finder')).style('width: 100%'):
+            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
                 ui.icon(name = 'find_in_page', size = '25px')
                 ui.label(text = 'Duplicate Finder').style('font-size: 20px; position: relative; right: -10px')
                 
-            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/usage_stats')).style('width: 100%'):
+            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
                 ui.icon(name = 'insights', size = '25px')
                 ui.label(text = 'Usage Stats').style('font-size: 20px; position: relative; right: -10px')
     
         with ui.expansion(text = 'Account', icon = 'account_circle').style('width: 100%; font-size: 25px'):
             
-            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/usage_stats')).style('width: 100%'):
+            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
                 ui.icon(name = 'edit', size = '25px')
                 ui.label(text = 'Edit data').style('font-size: 20px; position: relative; right: -10px')
 
-        with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/usage_stats')).style('width: 100%'):
+        with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
             ui.icon(name = 'settings', size = '25px')
             ui.label(text = 'Settings').style('font-size: 25px; position: relative; right: -25px; top: -5px')
             
         ui.separator()
         
-        with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/usage_stats')).style('width: 100%'):
+        with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
             ui.icon(name = 'logout', size = '25px')
             ui.label(text = 'Log out').style('font-size: 25px; position: relative; right: -25px; top: -5px')
-                        
-    ui.button(icon='menu', on_click=side_bar.toggle).style('position:relative; z-index: 1000').tailwind.background_color('transparent')
+    
+    with ui.row():
+        ui.button(icon='menu', on_click=side_bar.toggle).style('position:relative; z-index: 1000').tailwind.background_color('transparent')
+        local_cloud_switch = ui.switch(text= 'Local')
+        local_cloud_switch.props('color=white').style('font-family: Times New Roman; font-size: 18px')
+
+
+        

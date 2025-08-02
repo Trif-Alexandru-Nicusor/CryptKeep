@@ -8,6 +8,7 @@ def vault_cards_page():
     navbar.navbar()
     
     with ui.card().style('width: 100%').style('font-family: Times New Roman'):
+        ui.label('Vault Cards').style('font-size: 25px; align-self: center')
         with ui.row().style('column-gap: 107px'):
             vc_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vc_hide_unhide_button, vc_rows_hidden, vc_rows_unhidden, vc_table, vc_logs, 'vc'))
             vc_hide_unhide_button.tailwind.background_color('transparent')
