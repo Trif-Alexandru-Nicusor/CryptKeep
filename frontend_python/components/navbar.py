@@ -92,7 +92,11 @@ def navbar():
             with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/usage_stats')).style('width: 100%'):
                 ui.icon(name = 'edit', size = '25px')
                 ui.label(text = 'Edit data').style('font-size: 20px; position: relative; right: -10px')
-                
+
+        with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/usage_stats')).style('width: 100%'):
+            ui.icon(name = 'settings', size = '25px')
+            ui.label(text = 'Settings').style('font-size: 25px; position: relative; right: -25px; top: -5px')
+            
         ui.separator()
         
         with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/usage_stats')).style('width: 100%'):
