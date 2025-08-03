@@ -1,4 +1,5 @@
 from nicegui import ui
+from functions import li
 
 @ui.page('/login')
 def login_page():
@@ -41,7 +42,7 @@ def login_page():
             local_cloud_storage_radio = ui.radio(options = ['Local', 'Cloud'])
             local_cloud_storage_radio.props('inline color=white').style('font-size: 20px')
             
-        log_in_button = ui.button(text = 'Log In')
+        log_in_button = ui.button(text = 'Log In', on_click = lambda: li.log_in(username_input, password_input))
         log_in_button.tailwind.background_color('white').text_color('black').text_transform('normal-case').align_self('center').font_size('lg')
         
         ui.link(text = "Don't have an account? Sign Up", target = '/sign_up').tailwind.text_color('white').font_size('lg')

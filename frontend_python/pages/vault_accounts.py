@@ -4,9 +4,9 @@ from functions import va, globals
 @ui.page('/vault_accounts')
 def vault_accounts_page():
     navbar.navbar()
-    with ui.card().style('width: 100%').style('font-family: Times New Roman'):
+    with ui.card().style('width: 100%; font-family: Times New Roman'):
         ui.label('Vault Accounts').style('font-size: 25px; align-self: center')
-        with ui.row().style('column-gap: 107px'):
+        with ui.row().style('align-self: center'):
             
             va_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(va_hide_unhide_button, va_rows_hidden, va_rows_unhidden, va_table, va_logs, 'va'))
             va_hide_unhide_button.tailwind.background_color('transparent')
@@ -50,8 +50,8 @@ def vault_accounts_page():
             va_logs_button.tooltip(text = 'See your last actions.')
        
         va_columns = [
-            {'headerName': 'ID', 'field': 'id', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True, 'headerCheckboxSelection': True, 'checkboxSelection': True},
-            {'headerName': 'Type', 'field': 'type', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
+            {'headerName': 'ID', 'field': 'id', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True, 'headerCheckboxSelection': True, 'checkboxSelection': True,},
+            {'headerName': 'Type', 'field': 'type', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True, 'headerClass': 'ag-center-align'},
             {'headerName': 'Name', 'field': 'name', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
             {'headerName': 'Email/ID/Username', 'field': 'email_id_username', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
             {'headerName': 'Password', 'field': 'password', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
@@ -59,7 +59,9 @@ def vault_accounts_page():
         
         va_rows_hidden = []
         va_rows_unhidden = []
-        
-        va_table = ui.aggrid(options = {'columnDefs': va_columns, 'rowData': va_rows_hidden, 
-                                         'rowSelection': 'multiple', 'pagination': True, 'enableCellTextSelection': True, 'clipboard': True}, theme = "alpine-dark")
-        va_table.style('font-family: Times New Roman')
+        with ui.scroll_area().style('height: 435px;'):
+            va_table = ui.aggrid(options = {'columnDefs': va_columns, 'rowData': va_rows_hidden, 
+                                            'rowSelection': 'multiple', 'pagination': True,
+                                            'enableCellTextSelection': True, 'clipboard': True, 'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
+            va_table.style('width: 1000px; align-self:center; height: 400px;')
+            

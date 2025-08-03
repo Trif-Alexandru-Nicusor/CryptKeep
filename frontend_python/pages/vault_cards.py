@@ -9,7 +9,7 @@ def vault_cards_page():
     
     with ui.card().style('width: 100%').style('font-family: Times New Roman'):
         ui.label('Vault Cards').style('font-size: 25px; align-self: center')
-        with ui.row().style('column-gap: 107px'):
+        with ui.row().style('align-self: center'):
             vc_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vc_hide_unhide_button, vc_rows_hidden, vc_rows_unhidden, vc_table, vc_logs, 'vc'))
             vc_hide_unhide_button.tailwind.background_color('transparent')
             vc_hide_unhide_button.tooltip(text = 'Hide or unhide the card/s number and CVV.')
@@ -76,6 +76,9 @@ def vault_cards_page():
         vc_rows_hidden = []
         vc_rows_unhidden = []
         
-        vc_table = ui.aggrid(options = {'columnDefs': vc_columns, 'rowData': vc_rows_hidden, 
-                                         'rowSelection': 'multiple', 'pagination': True, 'enableCellTextSelection': True, 'clipboard': True}, theme = "alpine-dark")
-        vc_table.style('font-family: Times New Roman')
+        with ui.scroll_area().style('height: 435px;'):
+            vc_table = ui.aggrid(options = {'columnDefs': vc_columns, 'rowData': vc_rows_hidden, 
+                                            'rowSelection': 'multiple', 'pagination': True, 
+                                            'enableCellTextSelection': True, 'clipboard': True,
+                                            'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
+            vc_table.style('width: 1200px; align-self:center; height: 400px;')

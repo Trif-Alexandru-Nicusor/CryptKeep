@@ -7,7 +7,7 @@ def vault_keys_page():
     navbar.navbar()
     with ui.card().style('width: 100%').style('font-family: Times New Roman'):
         ui.label('Vault Keys').style('font-size: 25px; align-self: center')
-        with ui.row().style('column-gap: 107px'):
+        with ui.row().style('align-self: center'):
             
             vk_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vk_hide_unhide_button, vk_rows_hidden, vk_rows_unhidden, vk_table, vk_logs, 'vk'))
             vk_hide_unhide_button.tailwind.background_color('transparent')
@@ -57,6 +57,9 @@ def vault_keys_page():
         vk_rows_hidden = []
         vk_rows_unhidden = []
         
-        vk_table = ui.aggrid(options = {'columnDefs': vk_columns, 'rowData': vk_rows_hidden, 
-                                         'rowSelection': 'multiple', 'pagination': True, 'enableCellTextSelection': True, 'clipboard': True}, theme = "alpine-dark")
-        vk_table.style('font-family: Times New Roman')
+        with ui.scroll_area().style('height: 435px'):
+            vk_table = ui.aggrid(options = {'columnDefs': vk_columns, 'rowData': vk_rows_hidden, 
+                                            'rowSelection': 'multiple', 'pagination': True,
+                                            'enableCellTextSelection': True, 'clipboard': True,
+                                            'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
+            vk_table.style('width: 1000px; align-self: center; height: 400px')

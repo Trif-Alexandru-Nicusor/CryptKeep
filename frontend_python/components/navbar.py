@@ -1,4 +1,4 @@
-from nicegui import ui
+from nicegui import ui, app
 
 def navbar():
     ui.add_css('''
@@ -41,8 +41,19 @@ def navbar():
                 .q-field input {
                     font-size: 18px;
                 }
+                .ag-theme-alpine-dark .ag-cell {
+                    font-size: 14px !important;
+                    font-family: 'Times New Roman' !important;
+                    text-align: center !important;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .ag-theme-alpine-dark .ag-header-cell-label {
+                    font-size: 16px;
+                    justify-content: center !important;
+                    font-family: 'Times New Roman' !important;
+                }
             ''')
-    
     
     with ui.left_drawer(bordered = True, elevated = True).props('width=246').style('font-family: Times New Roman') as side_bar:
         
@@ -108,6 +119,7 @@ def navbar():
         ui.button(icon='menu', on_click=side_bar.toggle).style('position:relative; z-index: 1000').tailwind.background_color('transparent')
         local_cloud_switch = ui.switch(text= 'Local')
         local_cloud_switch.props('color=white').style('font-family: Times New Roman; font-size: 18px')
+
 
 
         
