@@ -4,9 +4,13 @@ from functions import vk, globals
 
 @ui.page('/vault_keys')
 def vault_keys_page():
+    
     navbar.navbar()
+    
     with ui.card().style('width: 100%').style('font-family: Times New Roman'):
+        
         ui.label('Vault Keys').style('font-size: 25px; align-self: center')
+        
         with ui.row().style('align-self: center'):
             
             vk_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vk_hide_unhide_button, vk_rows_hidden, vk_rows_unhidden, vk_table, vk_logs, 'vk'))
@@ -62,4 +66,4 @@ def vault_keys_page():
                                             'rowSelection': 'multiple', 'pagination': True,
                                             'enableCellTextSelection': True, 'clipboard': True,
                                             'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
-            vk_table.style('width: 1000px; align-self: center; height: 400px')
+            vk_table.style('min-width: 1000px; align-self: center; height: 400px')

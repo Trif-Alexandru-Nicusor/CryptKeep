@@ -1,12 +1,17 @@
 from nicegui import ui
 from components import navbar
 from functions import vpd, globals
+from fastapi import Request
 
 @ui.page('/vault_personal_data')
 def vault_personal_data():
+    
     navbar.navbar()
+    
     with ui.card().style('width: 100%').style('font-family: Times New Roman'):
+        
         ui.label('Vault Personal Data').style('font-size: 25px; align-self: center')
+        
         with ui.row().style('align-self: center'):
             vpd_hide_unhide_pin_dn_button = ui.button(icon = 'visibility', on_click = lambda: vpd.vk_hide_unhide_cn_vcc(vpd_hide_unhide_pin_dn_button, vpd_rows_hidden, vpd_rows_unhidden, vpd_table, vpd_logs))
             vpd_hide_unhide_pin_dn_button.tailwind.background_color('transparent')
@@ -108,5 +113,5 @@ def vault_personal_data():
             vpd_table = ui.aggrid(options = {'columnDefs': vpd_columns, 'rowData': vpd_rows_hidden, 'rowSelection': 'multiple', 'pagination': True,
                                              'enableCellTextSelection': True, 'clipboard': True,
                                              'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
-            vpd_table.style('width: 1500px; align-self:center; height: 400px;')
+            vpd_table.style('min-width: 1800px; align-self:center; height: 400px;')
             

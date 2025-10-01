@@ -1,11 +1,16 @@
 from nicegui import ui
 from components import navbar
 from functions import va, globals
+
 @ui.page('/vault_accounts')
 def vault_accounts_page():
+    
     navbar.navbar()
+    
     with ui.card().style('width: 100%; font-family: Times New Roman'):
+        
         ui.label('Vault Accounts').style('font-size: 25px; align-self: center')
+        
         with ui.row().style('align-self: center'):
             
             va_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(va_hide_unhide_button, va_rows_hidden, va_rows_unhidden, va_table, va_logs, 'va'))
@@ -63,5 +68,5 @@ def vault_accounts_page():
             va_table = ui.aggrid(options = {'columnDefs': va_columns, 'rowData': va_rows_hidden, 
                                             'rowSelection': 'multiple', 'pagination': True,
                                             'enableCellTextSelection': True, 'clipboard': True, 'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
-            va_table.style('width: 1000px; align-self:center; height: 400px;')
+            va_table.style('min-width: 1000px; align-self:center; height: 400px;')
             

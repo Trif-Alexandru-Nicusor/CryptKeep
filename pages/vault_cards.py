@@ -4,11 +4,15 @@ from functions import vc, globals
 
 @ui.page('/vault_cards')
 def vault_cards_page():
+    
     from datetime import datetime
+    
     navbar.navbar()
     
     with ui.card().style('width: 100%').style('font-family: Times New Roman'):
+        
         ui.label('Vault Cards').style('font-size: 25px; align-self: center')
+        
         with ui.row().style('align-self: center'):
             vc_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vc_hide_unhide_button, vc_rows_hidden, vc_rows_unhidden, vc_table, vc_logs, 'vc'))
             vc_hide_unhide_button.tailwind.background_color('transparent')
@@ -81,4 +85,4 @@ def vault_cards_page():
                                             'rowSelection': 'multiple', 'pagination': True, 
                                             'enableCellTextSelection': True, 'clipboard': True,
                                             'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
-            vc_table.style('width: 1200px; align-self:center; height: 400px;')
+            vc_table.style('min-width: 1400px; align-self:center; height: 400px;')

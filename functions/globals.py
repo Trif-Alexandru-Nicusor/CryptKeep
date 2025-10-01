@@ -1,9 +1,11 @@
 from nicegui import ui
 import json
+from functions.crud import delete_records_global
 
 async def global_remove_data_from_tables(table, which_table, rows_hidden, rows_unhidden, logs):
 
     selected_rows = await table.get_selected_rows()
+    
     if selected_rows != []:
         
         filtered_rows = [
@@ -13,6 +15,11 @@ async def global_remove_data_from_tables(table, which_table, rows_hidden, rows_u
         
         if which_table == 'va':
             
+            for row in selected_rows:
+                id = row.get("id")
+                if id:
+                    delete_records_global(id, 'vault_accounts')
+                    
             logs.push(f"Account/s removed.\n{json.dumps(filtered_rows, indent=1)}", classes='text-green')
             logs.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', classes = 'text-grey')
             ui.notify(message='Account/s removed.', position='bottom', type='positive')

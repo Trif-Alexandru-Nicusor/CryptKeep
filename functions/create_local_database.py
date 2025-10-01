@@ -47,24 +47,6 @@ tables_sql = [
         date_of_birth TEXT,
         address TEXT
     );
-    """,
-    """
-    CREATE TABLE IF NOT EXISTS app_settings (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        local_cloud_storage TEXT
-    );
-    """,
-    """
-    CREATE TABLE IF NOT EXISTS users_data (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        first_name TEXT,
-        last_name TEXT,
-        username TEXT,
-        email TEXT,
-        password TEXT,
-        creation_date TEXT,
-        is_active TEXT
-    );
     """
 ]
 for sql in tables_sql:

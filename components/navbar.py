@@ -115,11 +115,4 @@ def navbar():
             ui.icon(name = 'logout', size = '25px')
             ui.label(text = 'Log out').style('font-size: 25px; position: relative; right: -25px; top: -5px')
     
-    with ui.row():
-        ui.button(icon='menu', on_click=side_bar.toggle).style('position:relative; z-index: 1000').tailwind.background_color('transparent')
-        local_cloud_switch = ui.switch(text= 'Local')
-        local_cloud_switch.props('color=white').style('font-family: Times New Roman; font-size: 18px')
-
-
-
-        
+    ui.button(icon='menu', on_click=side_bar.toggle).style('position:relative; z-index: 1000').tailwind.background_color('transparent')
