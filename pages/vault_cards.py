@@ -68,21 +68,20 @@ def vault_cards_page():
             vc_logs_button.tooltip(text = 'See your last actions.')
             
         vc_columns = [
-            {'headerName': 'ID', 'field': 'id', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True, 'headerCheckboxSelection': True, 'checkboxSelection': True},
-            {'headerName': 'Type', 'field': 'type', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
-            {'headerName': 'Bank', 'field': 'bank', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
-            {'headerName': 'Cardholder’s Name', 'field': 'cardholders_name', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
-            {'headerName': 'Card Number', 'field': 'card_number', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
-            {'headerName': 'CVV', 'field': 'cvv', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
-            {'headerName': 'Expiration Date', 'field': 'expiration_date', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
+            {'headerName': 'ID', 'field': 'id', 'filter': 'agTextColumnFilter', 'floatingFilter': True, 'headerCheckboxSelection': True, 'checkboxSelection': True},
+            {'headerName': 'Type', 'field': 'type', 'filter': 'agTextColumnFilter', 'floatingFilter': True},
+            {'headerName': 'Bank', 'field': 'bank', 'filter': 'agTextColumnFilter', 'floatingFilter': True},
+            {'headerName': 'Cardholder’s Name', 'field': 'cardholders_name', 'filter': 'agTextColumnFilter', 'floatingFilter': True},
+            {'headerName': 'Card Number', 'field': 'card_number', 'filter': 'agTextColumnFilter', 'floatingFilter': True},
+            {'headerName': 'CVV', 'field': 'cvv', 'filter': 'agTextColumnFilter', 'floatingFilter': True},
+            {'headerName': 'Expiration Date', 'field': 'expiration_date', 'filter': 'agTextColumnFilter', 'floatingFilter': True},
         ]
         
         vc_rows_hidden = []
         vc_rows_unhidden = []
         
         with ui.scroll_area().style('height: 435px;'):
-            vc_table = ui.aggrid(options = {'columnDefs': vc_columns, 'rowData': vc_rows_hidden, 
-                                            'rowSelection': 'multiple', 'pagination': True, 
-                                            'enableCellTextSelection': True, 'clipboard': True,
-                                            'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
+            vc_table = ui.aggrid(options = {'columnDefs': vc_columns, 'rowData': vc_rows_hidden, 'rowSelection': 'multiple', 'pagination': True,
+                                             'enableCellTextSelection': True, 'clipboard': True,
+                                             'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
             vc_table.style('min-width: 1400px; align-self:center; height: 400px;')

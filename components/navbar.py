@@ -79,11 +79,11 @@ def navbar():
                 
         with ui.expansion(text = 'Tools', icon = 'handyman').style('width: 100%; font-size: 25px'):
             
-            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
+            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/password_generator')).style('width: 100%'):
                 ui.icon(name = 'password', size = '25px')
                 ui.label(text = 'Password Generator').style('font-size: 20px; position: relative; right: -10px')
                 
-            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
+            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/breach_checker')).style('width: 100%'):
                 ui.icon(name = 'security', size = '25px')
                 ui.label(text = 'Breach Checker').style('font-size: 20px; position: relative; right: -10px')
                 
@@ -98,12 +98,6 @@ def navbar():
             with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
                 ui.icon(name = 'insights', size = '25px')
                 ui.label(text = 'Usage Stats').style('font-size: 20px; position: relative; right: -10px')
-    
-        with ui.expansion(text = 'Account', icon = 'account_circle').style('width: 100%; font-size: 25px'):
-            
-            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
-                ui.icon(name = 'edit', size = '25px')
-                ui.label(text = 'Edit data').style('font-size: 20px; position: relative; right: -10px')
 
         with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
             ui.icon(name = 'settings', size = '25px')

@@ -53,17 +53,16 @@ def vault_keys_page():
 
         
         vk_columns = [
-            {'headerName': 'ID', 'field': 'id', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True, 'headerCheckboxSelection': True, 'checkboxSelection': True},
-            {'headerName': 'Name', 'field': 'name', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
-            {'headerName': 'Key', 'field': 'key', 'filter': 'agTextCOlumnFilter', 'floatingFilter': True},
+            {'headerName': 'ID', 'field': 'id', 'filter': 'agTextColumnFilter', 'floatingFilter': True, 'headerCheckboxSelection': True, 'checkboxSelection': True},
+            {'headerName': 'Name', 'field': 'name', 'filter': 'agTextColumnFilter', 'floatingFilter': True},
+            {'headerName': 'Key', 'field': 'key', 'filter': 'agTextColumnFilter', 'floatingFilter': True},
         ]
         
         vk_rows_hidden = []
         vk_rows_unhidden = []
         
         with ui.scroll_area().style('height: 435px'):
-            vk_table = ui.aggrid(options = {'columnDefs': vk_columns, 'rowData': vk_rows_hidden, 
-                                            'rowSelection': 'multiple', 'pagination': True,
-                                            'enableCellTextSelection': True, 'clipboard': True,
-                                            'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
+            vk_table = ui.aggrid(options = {'columnDefs': vk_columns, 'rowData': vk_rows_hidden, 'rowSelection': 'multiple', 'pagination': True,
+                                             'enableCellTextSelection': True, 'clipboard': True,
+                                             'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
             vk_table.style('min-width: 1000px; align-self: center; height: 400px')

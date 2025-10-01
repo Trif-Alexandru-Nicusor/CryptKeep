@@ -1,5 +1,5 @@
 from nicegui import ui
-
+from functions.crud import add_in_vault_keys
 
 def vk_add_new_key(name, key, table, rows_hidden, rows_unhidden, logs):
     
@@ -19,6 +19,7 @@ def vk_add_new_key(name, key, table, rows_hidden, rows_unhidden, logs):
         logs.push(line = f'New key added for name: {name.value}', classes = 'text-green')
         logs.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', classes = 'text-grey')
         
+        add_in_vault_keys(new_id, name.value, key.value)
         key.set_value(None)
         name.set_value(None)
         

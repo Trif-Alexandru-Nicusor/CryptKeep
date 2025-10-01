@@ -7,15 +7,6 @@ def get_connection(db_name = 'cryptkeep.db'):
     
     return conn, cursor
 
-def add_in_vault_accounts(type, name, email_id_username, password):
-    
-    conn, cursor = get_connection()
-    cursor.execute('''
-                   INSERT INTO vault_accounts (type, name, email_id_username, password) VALUES (?, ?, ?, ?)
-                   ''', (type, name, email_id_username, password))
-    conn.commit()
-    conn.close()
-
 def delete_records_global(record_id, table, db_name="cryptkeep.db"):
     
     conn, cursor = get_connection(db_name)
@@ -24,3 +15,38 @@ def delete_records_global(record_id, table, db_name="cryptkeep.db"):
     conn.commit()
     conn.close()
 
+def add_in_vault_accounts(id, type, name, email_id_username, password):
+    
+    conn, cursor = get_connection()
+    cursor.execute('''
+                   INSERT INTO vault_accounts (id, type, name, email_id_username, password) VALUES (?, ?, ?, ?, ?)
+                   ''', (id, type, name, email_id_username, password))
+    conn.commit()
+    conn.close()
+    
+def add_in_vault_keys(id, name, key):
+    
+    conn, cursor = get_connection()
+    cursor.execute('''
+                   INSERT INTO vault_keys (id, name, key) VALUES (?, ?, ?)
+                   ''', (id, name, key))
+    conn.commit()
+    conn.close()
+
+def add_in_vault_cards(id, type, bank, cardholders_name, card_number, cvv, expiration_date):
+    
+    conn, cursor = get_connection()
+    cursor.execute('''
+                   INSERT INTO vault_cards (id, type, bank, cardholders_name, card_number, cvv, expiration_date) VALUES (?, ?, ?, ?, ?, ?, ?)
+                   ''', (id, type, bank, cardholders_name, card_number, cvv, expiration_date))
+    conn.commit()
+    conn.close()
+    
+def add_in_vault_personal_data(id, full_name, pin, document_number, date_of_issue, expiration_date, issuing_authority, date_of_birth, address):
+    
+    conn, cursor = get_connection()
+    cursor.execute('''
+                   INSERT INTO vault_personal_data (id, full_name, pin, document_number, date_of_issue, expiration_date, issuing_authority, date_of_birth, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                   ''', (id, full_name, pin, document_number, date_of_issue, expiration_date, issuing_authority, date_of_birth, address))
+    conn.commit()
+    conn.close()

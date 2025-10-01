@@ -1,5 +1,5 @@
 from nicegui import ui
-
+from functions.crud import add_in_vault_cards
 def vc_add_new_card(type, bank, cardholders_name, card_number, expiration_date_month, expiration_date_year, cvv, table, rows_hidden, rows_unhidden, logs):
     
     
@@ -20,6 +20,8 @@ def vc_add_new_card(type, bank, cardholders_name, card_number, expiration_date_m
         
         logs.push(line = f'New card added for[\ntype:{type.value}\nbank: {bank.value}\ncardholder`s name: {cardholders_name.value}]', classes = 'text-green')
         logs.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', classes = 'text-grey')
+        
+        add_in_vault_cards(new_id, type.value, bank.value, cardholders_name.value, card_number.value, cvv.value, expiration_date)
         
         type.set_value(None)
         bank.set_value(None)

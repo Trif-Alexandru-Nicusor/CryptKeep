@@ -7,6 +7,7 @@ from pages.vault_personal_data import *
 from nicegui import ui, app
 from pages.settings import *
 from pages.password_generator import *
+from pages.breach_checker import *
 
 app.on_startup(lambda : main_page())
 

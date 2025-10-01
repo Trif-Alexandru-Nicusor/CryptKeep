@@ -26,18 +26,33 @@ async def global_remove_data_from_tables(table, which_table, rows_hidden, rows_u
         
         elif which_table == 'vk':
             
+            for row in selected_rows:
+                id = row.get("id")
+                if id:
+                    delete_records_global(id, 'vault_keys')
+                    
             logs.push(f'Key/s removed.\n{json.dumps(filtered_rows, indent=1)}', classes = 'text-green')
             logs.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', classes = 'text-grey')
             ui.notify(message='Key/s removed.', position='bottom', type='positive')
         
         elif which_table == 'vc':
             
+            for row in selected_rows:
+                id = row.get("id")
+                if id:
+                    delete_records_global(id, 'vault_cards')
+                    
             logs.push(f'Card/s removed.\n{json.dumps(filtered_rows, indent=1)}', classes = 'text-green')
             logs.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', classes = 'text-grey')
             ui.notify(message='Card/s removed.', position='bottom', type='positive')
         
         elif which_table == 'vpd':
             
+            for row in selected_rows:
+                id = row.get("id")
+                if id:
+                    delete_records_global(id, 'vault_personal_data')
+                    
             logs.push(f'Data removed.\n{json.dumps(filtered_rows, indent=1)}', classes = 'text-green')
             logs.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', classes = 'text-grey')
             ui.notify(message='Data removed', position='bottom', type='positive')
