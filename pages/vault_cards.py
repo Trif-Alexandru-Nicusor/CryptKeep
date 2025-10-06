@@ -15,7 +15,7 @@ def vault_cards_page():
         
         with ui.row().style('align-self: center'):
             vc_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(vc_hide_unhide_button, vc_rows_hidden, vc_rows_unhidden, vc_table, vc_logs, 'vc'))
-            vc_hide_unhide_button.tailwind.background_color('transparent')
+            vc_hide_unhide_button.props('color=transparent')
             vc_hide_unhide_button.tooltip(text = 'Hide or unhide the card/s number and CVV.')
             
             with ui.dialog() as dialog, ui.card().classes('scrollbar-custom').style('font-family: Times New Roman'):
@@ -45,26 +45,26 @@ def vault_cards_page():
                 vc_save_card = ui.button(text = 'Save Card', icon = 'add_card', on_click = lambda: vc.vc_add_new_card(vc_type_select, vc_bank_input, vc_cardholders_name, vc_card_number_input,
                                                                                                                       vc_expiration_date_month_select, vc_expiration_date_year_select, vc_cvv_input,
                                                                                                                       vc_table, vc_rows_hidden, vc_rows_unhidden, vc_logs))
-                vc_save_card.tailwind.background_color('white').text_transform('normal-case').align_self('center').text_color('black')
+                vc_save_card.props('flat color=white text-color=white').style('text-transform: none; align-self: center')
                              
             vc_add_card_s_button = ui.button(icon = 'add_card', on_click = dialog.open)
-            vc_add_card_s_button.tailwind.background_color('transparent')
+            vc_add_card_s_button.props('color=transparent')
             vc_add_card_s_button.tooltip(text = 'Add a new card.')
             
             vc_remove_card_s_button = ui.button(icon = 'credit_card_off', on_click = lambda: globals.global_remove_data_from_tables(vc_table, 'vc', vc_rows_hidden, vc_rows_unhidden, vc_logs))
-            vc_remove_card_s_button.tailwind.background_color('transparent')
+            vc_remove_card_s_button.props('color=transparent')
             vc_remove_card_s_button.tooltip(text = 'Remove the card/s selected')
             
-            vc_download_card__s_info = ui.button(icon = 'download')
-            vc_download_card__s_info.tailwind.background_color('transparent')
-            vc_download_card__s_info.tooltip(text = 'Download card/s selected.')
+            vc_download_card_s_info = ui.button(icon = 'download')
+            vc_download_card_s_info.props('color=transparent')
+            vc_download_card_s_info.tooltip(text = 'Download card/s selected.')
                         
             with ui.dialog() as dialog1, ui.card().style('font-family: Times New Roman'):
                 vc_logs = ui.log()
                 vc_logs.style('width: 500px')
                 
             vc_logs_button = ui.button(icon = 'history', on_click = dialog1.open)
-            vc_logs_button.tailwind.background_color('transparent')
+            vc_logs_button.props('color=transparent')
             vc_logs_button.tooltip(text = 'See your last actions.')
             
         vc_columns = [
@@ -83,5 +83,6 @@ def vault_cards_page():
         with ui.scroll_area().style('height: 435px;'):
             vc_table = ui.aggrid(options = {'columnDefs': vc_columns, 'rowData': vc_rows_hidden, 'rowSelection': 'multiple', 'pagination': True,
                                              'enableCellTextSelection': True, 'clipboard': True,
-                                             'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine-dark")
+                                             'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine")
             vc_table.style('min-width: 1400px; align-self:center; height: 400px;')
+            vc_table.props('data-ag-theme-mode=dark')

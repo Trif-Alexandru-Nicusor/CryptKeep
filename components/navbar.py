@@ -57,7 +57,7 @@ def navbar():
     
     with ui.left_drawer(bordered = True, elevated = True).props('width=246').style('font-family: Times New Roman') as side_bar:
         
-        with ui.menu_item(on_click = lambda: ui.navigate.to('/main')).style('width: 100%'):
+        with ui.menu_item(on_click = lambda: ui.navigate.to('/')).style('width: 100%'):
             ui.label(text = 'CryptKeep').style('font-size: 26px')
             
         with ui.expansion(text = 'Vault', icon = 'enhanced_encryption').style('width: 100%; font-size: 25px'):
@@ -109,4 +109,4 @@ def navbar():
             ui.icon(name = 'logout', size = '25px')
             ui.label(text = 'Log out').style('font-size: 25px; position: relative; right: -25px; top: -5px')
     
-    ui.button(icon='menu', on_click=side_bar.toggle).style('position:relative; z-index: 1000').tailwind.background_color('transparent')
+    ui.button(icon='menu', on_click=side_bar.toggle).style('position:relative; z-index: 1000').props('flat color=white')

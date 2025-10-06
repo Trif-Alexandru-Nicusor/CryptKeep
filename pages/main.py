@@ -1,7 +1,7 @@
 from nicegui import ui
 from components import navbar
 
-@ui.page('/main')
+@ui.page('/')
 def main_page():
 
     navbar.navbar()

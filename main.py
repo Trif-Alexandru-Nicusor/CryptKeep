@@ -12,5 +12,5 @@ from pages.breach_checker import *
 app.on_startup(lambda : main_page())
 
 app.native.window_args['min_size'] = [1040, 700]
-ui.run(dark= True, title = 'CryptKeep', native =  True, window_size = [1040, 700])
-#ui.run(dark= True, title = 'CryptKeep')
+#ui.run(dark= True, title = 'CryptKeep', native =  True, window_size = [1040, 700])
+ui.run(dark= True, title = 'CryptKeep')
