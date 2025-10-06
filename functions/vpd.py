@@ -21,7 +21,7 @@ def vpd_add_new_data(full_name, pin, document_number, date_of_issue, expiration_
         logs.push(f'New data added for full name: {full_name.value}.', classes = 'text-green')
         logs.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', classes = 'text-grey')
         
-        add_in_vault_personal_data(new_id, full_name.value, pin.value, document_number.value, date_of_issue.vallue, expiration_date.value, issuing_authority.value, date_of_birth.value, address.value)
+        add_in_vault_personal_data(new_id, full_name.value, pin.value, document_number.value, date_of_issue.value, expiration_date.value, issuing_authority.value, date_of_birth.value, address.value)
         
         full_name.set_value(None)
         pin.set_value(None)

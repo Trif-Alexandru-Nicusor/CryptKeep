@@ -2,6 +2,18 @@ from nicegui import ui
 import json
 from functions.crud import delete_records_global
 
+va_rows_hidden = []
+va_rows_unhidden = []
+
+vc_rows_hidden = []
+vc_rows_unhidden = []
+
+vk_rows_hidden = []
+vk_rows_unhidden =[]
+
+vpd_rows_hidden = []
+vpd_rows_unhidden = []
+
 async def global_remove_data_from_tables(table, which_table, rows_hidden, rows_unhidden, logs):
 
     selected_rows = await table.get_selected_rows()

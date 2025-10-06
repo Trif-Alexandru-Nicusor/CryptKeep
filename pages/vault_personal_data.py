@@ -13,7 +13,7 @@ def vault_personal_data():
         ui.label('Vault Personal Data').style('font-size: 25px; align-self: center')
         
         with ui.row().style('align-self: center'):
-            vpd_hide_unhide_pin_dn_button = ui.button(icon = 'visibility', on_click = lambda: vpd.vk_hide_unhide_cn_vcc(vpd_hide_unhide_pin_dn_button, vpd_rows_hidden, vpd_rows_unhidden, vpd_table, vpd_logs))
+            vpd_hide_unhide_pin_dn_button = ui.button(icon = 'visibility', on_click = lambda: globals.hide_unhide_things(vpd_hide_unhide_pin_dn_button, globals.vpd_rows_hidden, globals.vpd_rows_unhidden, vpd_table, vpd_logs))
             vpd_hide_unhide_pin_dn_button.props('color=transparent')
             vpd_hide_unhide_pin_dn_button.tooltip(text = 'Hide or unhide Identity Number and Document Number of selected data/s.')
             
@@ -66,15 +66,18 @@ def vault_personal_data():
                 vpd_save_data_button = ui.button(text = 'Save Data', icon = 'person_add', on_click = lambda: vpd.vpd_add_new_data(vpd_full_name_input, vpd_pin_input, vpd_document_number_input, 
                                                                                                                                   vpd_date_of_issue_input, vpd_expiration_date_input, 
                                                                                                                                   vpd_issuing_authority_input, vpd_date_of_birth_input, 
-                                                                                                                                  vpd_address_input, vpd_table, vpd_rows_hidden, 
-                                                                                                                                  vpd_rows_unhidden, vpd_logs))
+                                                                                                                                  vpd_address_input, vpd_table, globals.vpd_rows_hidden, 
+                                                                                                                                  globals.vpd_rows_unhidden, vpd_logs))
                 vpd_save_data_button.props('flat color=white text-color=white').style('text-transform: none; align-self: center')
+                
+                
+                
                 
             vpd_add_data_button = ui.button(icon = 'person_add', on_click = vpd_dialog.open)
             vpd_add_data_button.props('color=transparent')
             vpd_add_data_button.tooltip(text = 'Add new data.')
             
-            vpd_remove_data_button = ui.button(icon = 'person_remove', on_click = lambda: globals.global_remove_data_from_tables(vpd_table, 'vpd', vpd_rows_hidden, vpd_rows_unhidden, vpd_logs))
+            vpd_remove_data_button = ui.button(icon = 'person_remove', on_click = lambda: globals.global_remove_data_from_tables(vpd_table, 'vpd', globals.vpd_rows_hidden, globals.vpd_rows_unhidden, vpd_logs))
             vpd_remove_data_button.props('color=transparent')
             vpd_remove_data_button.tooltip(text = 'Remove data/s selected.')
             
@@ -103,11 +106,8 @@ def vault_personal_data():
             
         ]
         
-        vpd_rows_hidden = []
-        vpd_rows_unhidden = []
-        
         with ui.scroll_area().style('height: 435px;'):
-            vpd_table = ui.aggrid(options = {'columnDefs': vpd_columns, 'rowData': vpd_rows_hidden, 'rowSelection': 'multiple', 'pagination': True,
+            vpd_table = ui.aggrid(options = {'columnDefs': vpd_columns, 'rowData': globals.vpd_rows_hidden, 'rowSelection': 'multiple', 'pagination': True,
                                              'enableCellTextSelection': True, 'clipboard': True,
                                              'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine")
             vpd_table.style('min-width: 1800px; align-self:center; height: 400px;')

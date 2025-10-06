@@ -13,7 +13,7 @@ def vault_accounts_page():
         
         with ui.row().style('align-self: center'):
             
-            va_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(va_hide_unhide_button, va_rows_hidden, va_rows_unhidden, va_table, va_logs, 'va'))
+            va_hide_unhide_button = ui.button(icon = 'visibility', on_click = lambda: globals.global_hide_unhide_things(va_hide_unhide_button, globals.va_rows_hidden, globals.va_rows_unhidden, va_table, va_logs, 'va'))
             va_hide_unhide_button.props('color=transparent')
             va_hide_unhide_button.tooltip(text = 'Hide or unhide the account/s selected.')
             
@@ -31,7 +31,7 @@ def vault_accounts_page():
                 va_password_account_input.style('width: 170px;').props('outlined')
                 
                 va_add_account_button = ui.button(text = 'Add Account', icon = 'person_add', on_click = lambda: va.va_add_new_account(va_type_account_select, va_name_app_site__input, va_email_id_username_input,
-                                                                                                                                      va_password_account_input, va_table, va_rows_hidden, va_rows_unhidden, va_logs))
+                                                                                                                                      va_password_account_input, va_table, globals.va_rows_hidden, globals.va_rows_unhidden, va_logs))
                 va_add_account_button.props('flat color=white text-color=white').style('text-transform: none; align-self: center')
 
             
@@ -39,7 +39,7 @@ def vault_accounts_page():
             va_add_account_s_button.props('color=transparent')
             va_add_account_s_button.tooltip(text = 'Add a account.')
             
-            va_remove_account_s_button = ui.button(icon = 'remove', on_click = lambda: globals.global_remove_data_from_tables(va_table, 'va', va_rows_hidden, va_rows_unhidden, va_logs))
+            va_remove_account_s_button = ui.button(icon = 'remove', on_click = lambda: globals.global_remove_data_from_tables(va_table, 'va', globals.va_rows_hidden, globals.va_rows_unhidden, va_logs))
             va_remove_account_s_button.props('color=transparent')
             va_remove_account_s_button.tooltip(text = 'Remove the account/s selected.')
             
@@ -63,10 +63,8 @@ def vault_accounts_page():
             {'headerName': 'Password', 'field': 'password', 'filter': 'agTextColumnFilter', 'floatingFilter': True},
         ]
         
-        va_rows_hidden = []
-        va_rows_unhidden = []
         with ui.scroll_area().style('height: 435px;'):
-            va_table = ui.aggrid(options = {'columnDefs': va_columns, 'rowData': va_rows_hidden, 'rowSelection': 'multiple', 'pagination': True,
+            va_table = ui.aggrid(options = {'columnDefs': va_columns, 'rowData': globals.va_rows_hidden, 'rowSelection': 'multiple', 'pagination': True,
                                              'enableCellTextSelection': True, 'clipboard': True,
                                              'paginationPageSize': 6, 'paginationPageSizeSelector': [6, 10, 15, 20, 25, 30, 35, 40, 45, 50]}, theme = "alpine")
             va_table.style('min-width: 1000px; align-self:center; height: 400px;')
