@@ -1,5 +1,5 @@
 from nicegui import ui
-from functions.crud import add_in_vault_accounts
+from functions.crud import add_in_table
 
 def va_add_new_account(type, name, email_id_username, password, table, rows_hidden, rows_unhidden, logs):
     
@@ -20,7 +20,11 @@ def va_add_new_account(type, name, email_id_username, password, table, rows_hidd
         logs.push(line = f'New password added for[\ntype: {type.value}\nname: {name.value}\nemail/id/username: {email_id_username.value}]', classes = 'text-green')
         logs.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', classes = 'text-grey')
         
-        add_in_vault_accounts(new_id, type.value, name.value, email_id_username.value, password.value)
+        add_in_table(
+            table_name='vault_accounts',
+            columns=['id', 'type', 'name', 'email_id_username', 'password'],
+            values=(new_id, type.value, name.value, email_id_username.value, password.value)
+            )
         
         type.set_value(None)
         name.set_value(None)

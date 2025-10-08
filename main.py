@@ -10,6 +10,8 @@ from pages.password_generator import *
 from pages.breach_checker import *
 from functions.crud import get_vault_values
 import functions.globals
+from pages.duplicate_finder import *
+
 app.on_startup(lambda : startup())
 
 def startup():

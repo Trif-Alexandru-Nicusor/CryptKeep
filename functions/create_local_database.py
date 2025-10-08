@@ -10,7 +10,7 @@ cursor.execute("PRAGMA foreign_keys = ON;")
 tables_sql = [
     """
     CREATE TABLE IF NOT EXISTS vault_accounts (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY,
         type TEXT,
         name TEXT,
         email_id_username TEXT,
@@ -19,7 +19,7 @@ tables_sql = [
     """,
     """
     CREATE TABLE IF NOT EXISTS vault_cards (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY,
         type TEXT,
         bank TEXT,
         cardholders_name TEXT,
@@ -30,14 +30,14 @@ tables_sql = [
     """,
     """
     CREATE TABLE IF NOT EXISTS vault_keys (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY,
         name TEXT,
         key TEXT
     );
     """,
     """
     CREATE TABLE IF NOT EXISTS vault_personal_data (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY,
         full_name TEXT,
         pin TEXT,
         document_number TEXT,

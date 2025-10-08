@@ -60,7 +60,7 @@ def navbar():
         with ui.menu_item(on_click = lambda: ui.navigate.to('/')).style('width: 100%'):
             ui.label(text = 'CryptKeep').style('font-size: 26px')
             
-        with ui.expansion(text = 'Vault', icon = 'enhanced_encryption').style('width: 100%; font-size: 25px'):
+        with ui.expansion(text = 'Vault', icon = 'enhanced_encryption', value = True).style('width: 100%; font-size: 25px'):
             with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/vault_accounts')).style('width: 100%'):
                 ui.icon(name = 'account_circle', size = '25px')
                 ui.label(text = 'Accounts').style('font-size: 20px; position: relative; right: -10px')
@@ -77,7 +77,7 @@ def navbar():
                 ui.icon(name = 'person', size = '25px')
                 ui.label(text = 'PersonaI Data').style('font-size: 20px; position: relative; right: -10px')
                 
-        with ui.expansion(text = 'Tools', icon = 'handyman').style('width: 100%; font-size: 25px'):
+        with ui.expansion(text = 'Tools', icon = 'handyman', value = True).style('width: 100%; font-size: 25px'):
             
             with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/password_generator')).style('width: 100%'):
                 ui.icon(name = 'password', size = '25px')
@@ -91,22 +91,8 @@ def navbar():
                 ui.icon(name = 'history', size = '25px')
                 ui.label(text = 'Activity Log').style('font-size: 20px; position: relative; right: -10px')
                 
-            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
+            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/duplicate_finder')).style('width: 100%'):
                 ui.icon(name = 'find_in_page', size = '25px')
                 ui.label(text = 'Duplicate Finder').style('font-size: 20px; position: relative; right: -10px')
-                
-            with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
-                ui.icon(name = 'insights', size = '25px')
-                ui.label(text = 'Usage Stats').style('font-size: 20px; position: relative; right: -10px')
-
-        with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
-            ui.icon(name = 'settings', size = '25px')
-            ui.label(text = 'Settings').style('font-size: 25px; position: relative; right: -25px; top: -5px')
-            
-        ui.separator()
-        
-        with ui.menu_item(on_click = lambda: ui.navigate.to(target = '/')).style('width: 100%'):
-            ui.icon(name = 'logout', size = '25px')
-            ui.label(text = 'Log out').style('font-size: 25px; position: relative; right: -25px; top: -5px')
     
     ui.button(icon='menu', on_click=side_bar.toggle).style('position:relative; z-index: 1000').props('flat color=white')

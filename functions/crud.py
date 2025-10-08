@@ -1,4 +1,5 @@
 import sqlite3
+from collections import defaultdict
 
 def get_connection(db_name = 'cryptkeep.db'):
     
@@ -15,41 +16,20 @@ def delete_records_global(record_id, table, db_name="cryptkeep.db"):
     conn.commit()
     conn.close()
 
-def add_in_vault_accounts(id, type, name, email_id_username, password):
-    
-    conn, cursor = get_connection()
-    cursor.execute('''
-                   INSERT INTO vault_accounts (id, type, name, email_id_username, password) VALUES (?, ?, ?, ?, ?)
-                   ''', (id, type, name, email_id_username, password))
-    conn.commit()
-    conn.close()
-    
-def add_in_vault_keys(id, name, key):
-    
-    conn, cursor = get_connection()
-    cursor.execute('''
-                   INSERT INTO vault_keys (id, name, key) VALUES (?, ?, ?)
-                   ''', (id, name, key))
-    conn.commit()
-    conn.close()
+def add_in_table(table_name: str, columns: list, values: tuple):
 
-def add_in_vault_cards(id, type, bank, cardholders_name, card_number, cvv, expiration_date):
-    
     conn, cursor = get_connection()
-    cursor.execute('''
-                   INSERT INTO vault_cards (id, type, bank, cardholders_name, card_number, cvv, expiration_date) VALUES (?, ?, ?, ?, ?, ?, ?)
-                   ''', (id, type, bank, cardholders_name, card_number, cvv, expiration_date))
-    conn.commit()
-    conn.close()
-    
-def add_in_vault_personal_data(id, full_name, pin, document_number, date_of_issue, expiration_date, issuing_authority, date_of_birth, address):
-    
-    conn, cursor = get_connection()
-    cursor.execute('''
-                   INSERT INTO vault_personal_data (id, full_name, pin, document_number, date_of_issue, expiration_date, issuing_authority, date_of_birth, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                   ''', (id, full_name, pin, document_number, date_of_issue, expiration_date, issuing_authority, date_of_birth, address))
-    conn.commit()
-    conn.close()
+    try:
+        cols_str = ', '.join(columns)
+        placeholders = ', '.join(['?'] * len(columns))
+        cursor.execute(
+            f'INSERT INTO {table_name} ({cols_str}) VALUES ({placeholders})',
+            values
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
     
 def get_vault_values(table_name: str, columns: list, mask_columns: list = []):
 
@@ -65,7 +45,6 @@ def get_vault_values(table_name: str, columns: list, mask_columns: list = []):
     for row in rows:
         row_dict = dict(zip(columns, row))
         
-        # hidden
         hidden_row = {}
         for col in columns:
             if col in mask_columns:
@@ -74,8 +53,35 @@ def get_vault_values(table_name: str, columns: list, mask_columns: list = []):
                 hidden_row[col] = row_dict[col]
         hidden_list.append(hidden_row)
         
-        # unhidden
         unhidden_list.append(row_dict)
     
     conn.close()
     return hidden_list, unhidden_list
+
+def find_duplicate_passwords(logs):
+    conn, cur = get_connection()
+    
+    try:
+        cur.execute("SELECT id, password FROM vault_accounts")
+        rows = cur.fetchall()
+
+        password_map = defaultdict(list)
+        for row_id, password in rows:
+            password_map[password].append(row_id)
+
+        duplicates = {pwd: ids for pwd, ids in password_map.items() if len(ids) > 1}
+
+        if not duplicates:
+            logs.push("No duplicates found.")
+            return
+
+        messages = []
+        for pwd, ids in duplicates.items():
+            ids_str = ", ".join(map(str, ids))
+            messages.append(f"The same password is found at ids: {ids_str}.")
+
+        logs.push("\n".join(messages))
+
+    finally:
+        conn.close()
+
